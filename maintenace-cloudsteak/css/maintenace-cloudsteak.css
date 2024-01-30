@@ -1,0 +1,25 @@
+/* maintenace-cloudsteak.css */
+.maintenance-mode {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    left: 0px !important;
+    top: 0px !important;
+}
+.maintenance-mode h1 {
+    /* Add styles for your header */
+}
+.maintenance-mode p {
+    /* Add styles for your paragraph */
+}
