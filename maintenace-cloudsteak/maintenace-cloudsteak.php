@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Maintenance Mode (CloudSteak)
  * Description: Simple maintenance mode plugin.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: CloudSteak
  * Author URI: https://cloudsteak.com
  * License: MIT
@@ -100,7 +100,7 @@ function mm_settings_page() {
         $custom_text = get_option('mm_custom_text');
 
         // Enqueue the CSS file
-        wp_enqueue_style('maintenace-cloudsteak', plugins_url('./css/maintenace-cloudsteak.css', __FILE__));
+        wp_enqueue_style('maintenace-cloudsteak', plugins_url('/css/maintenace-cloudsteak.css', __FILE__));
 
         wp_die('<div class="maintenance-mode" style="background-image: url('.esc_url($background_image).');"><h1 style="color: '.esc_attr($header_text_color).'">'.esc_html($header_text).'</h1><p style="color: '.esc_attr($custom_text_color).'">'.esc_html($custom_text).'</p></div>');
     }
