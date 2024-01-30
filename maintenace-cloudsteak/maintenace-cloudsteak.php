@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Maintenance Mode (CloudSteak)
  * Description: Simple maintenance mode plugin.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: CloudSteak
  * Author URI: https://cloudsteak.com
  * License: MIT
@@ -97,14 +97,20 @@ function mm_settings_page() {
     if (!current_user_can('edit_themes') || !is_user_logged_in()) {
         $background_image = get_option('mm_background_image');
         $header_text = get_option('mm_header_text');
+        $header_text_color = get_option('mm_header_text_color'); // Fetch the header text color
         $custom_text = get_option('mm_custom_text');
-
-        // Enqueue the CSS file
-        wp_enqueue_style('maintenace-cloudsteak', plugins_url('/css/maintenace-cloudsteak.css', __FILE__));
+        $custom_text_color = get_option('mm_custom_text_color'); // Fetch the custom text color
 
         wp_die('<div class="maintenance-mode" style="background-image: url('.esc_url($background_image).');"><h1 style="color: '.esc_attr($header_text_color).'">'.esc_html($header_text).'</h1><p style="color: '.esc_attr($custom_text_color).'">'.esc_html($custom_text).'</p></div>');
     }
 }
 
+function mm_enqueue_styles() {
+    if (!current_user_can('edit_themes') || !is_user_logged_in()) {
+        wp_enqueue_style('maintenance-cloudsteak-style', plugins_url('css/maintenance-cloudsteak.css', __FILE__));
+    }
+}
+
+add_action('wp_enqueue_scripts', 'mm_enqueue_styles');
 add_action('template_redirect', 'mm_maintenance_mode');
 ?>
