@@ -19,7 +19,11 @@
 }
 .maintenance-mode h1 {
     /* Add styles for your header */
+    font-family: sans-serif;
+    font-size: 2.8em;
 }
 .maintenance-mode p {
     /* Add styles for your paragraph */
+    font-family: sans-serif;
+    font-size: 2em;
 }
