@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Maintenance Mode (CloudSteak)
  * Description: Simple maintenance mode plugin.
- * Version: 1.1.12
+ * Version: 1.1.13
  * Author: CloudSteak
  * Author URI: https://cloudsteak.com
  * License: MIT
@@ -101,7 +101,16 @@ function mm_settings_page() {
         $custom_text = get_option('mm_custom_text');
         $custom_text_color = get_option('mm_custom_text_color'); // Fetch the custom text color
 
-        wp_die('<div class="maintenance-mode" style="padding-left:10%;position: fixed;background-position:center;background-repeat: no-repeat;background-size: cover;left: 0px;top: 0px;height: 100vh;width: 100vw;background-image: url('.esc_url($background_image).');"><h1 style="font-family: sans-serif;font-size: 2.8em;color: '.esc_attr($header_text_color).'">'.esc_html($header_text).'</h1><p style="font-family: sans-serif;font-size: 2em;color: '.esc_attr($custom_text_color).'">'.esc_html($custom_text).'</p></div>');
+        // Check if the user is logged in
+        if (is_user_logged_in()) {
+            // If the user is logged in, you can choose to not display the background image
+            // by setting $background_image to an empty string or a placeholder
+            $background_image = ''; // No background image for logged-in users
+            $header_text = ''; // No header text for logged-in users
+            $custom_text = ''; // No custom text for logged-in users
+        }
+
+        wp_die('<div id="cloudsteak-maintenance-mode" class="maintenance-mode" style="padding-left:10%;position: fixed;background-position:center;background-repeat: no-repeat;background-size: cover;left: 0px;top: 0px;height: 100vh;width: 100vw;background-image: url('.esc_url($background_image).');"><h1 style="font-family: sans-serif;font-size: 2.8em;color: '.esc_attr($header_text_color).'">'.esc_html($header_text).'</h1><p style="font-family: sans-serif;font-size: 2em;color: '.esc_attr($custom_text_color).'">'.esc_html($custom_text).'</p></div>');
     }
 }
 
